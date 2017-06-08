@@ -9,16 +9,34 @@ var dealSchema = mongoose.Schema({
 		required: true
 	},
 	seller: {
-		user: ObjectId,
-		order: ObjectId
+		user: {
+			type: ObjectId,
+			ref: 'User'
+		},
+		order: {
+			type: ObjectId,
+			ref: 'Order'
+		}
 	},
 	buyer: {
-		user: ObjectId,
-		order: ObjectId
+		user: {
+			type: ObjectId,
+			ref: 'User'
+		},
+		order: {
+			type: ObjectId,
+			ref: 'Order'
+		}
 	},
-	instrument: ObjectId,
-	session: ObjectId,
-	date: Date
+	instrument: {
+		type: ObjectId,
+		ref: 'Instrument'
+	},
+	session: {
+		type: ObjectId,
+		ref: 'Session'
+	},
+	date: String
 });
 
 var Deal = module.exports = connection.model('Deal', dealSchema);

@@ -17,6 +17,10 @@ module.exports = function(req, res) {
 				session = session.toObject();
 				session.id = session._id;
 				delete session._id;
+				for (let i = 0; i < session.instruments.length; i++) {
+					session.instruments[i].id = session.instruments[i]._id;
+					delete session.instruments[i]._id;
+				}
 				var startDate = new Date(session.start);
 				var currentDate = new Date();
 				if (currentDate > startDate) {

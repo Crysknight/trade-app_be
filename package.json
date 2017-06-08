@@ -1,5 +1,5 @@
 {
-  "name": "cadrobocter_be",
+  "name": "trade-app_be",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,6 +11,7 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "moment": "^2.18.1",
     "mongoose": "^4.9.5",
     "mongoose-auto-increment-with-decrement": "*",
     "password-hash": "^1.2.2",

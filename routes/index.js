@@ -16,6 +16,10 @@ var disableInstrument = require('./instruments/disable-instrument');
 // Session
 var createSession = require('./session/create-session');
 
+// Orders
+var addOrder = require('./orders/add-order');
+var getOrders = require('./orders/get-orders');
+
 var routes = {
 	checkToken,
 	checkUpdate,
@@ -27,7 +31,9 @@ var routes = {
 	getUsers,
 	updateUser,
 	disableUser,
-	createSession
+	createSession,
+	addOrder,
+	getOrders
 };
 
 module.exports = routes;

@@ -35,6 +35,13 @@ app.use('/api/*', (req, res, next) => routes.checkToken(req, res, next));
 app.post('/api/check-update', (req, res) => routes.checkUpdate(req, res));
 
 
+// Orders
+
+app.post('/api/add-order', (req, res) => routes.addOrder(req, res));
+
+app.post('/api/get-orders', (req, res) => routes.getOrders(req, res));
+
+
 /* =================================================================================================== */
 /* =================================================================================================== */
 

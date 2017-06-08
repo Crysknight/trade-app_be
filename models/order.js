@@ -16,11 +16,20 @@ var orderSchema = mongoose.Schema({
 	},
 	user: {
 		type: ObjectId,
+		ref: 'User',
 		required: true
 	},
 	instrument: {
 		type: ObjectId,
+		ref: 'Instrument',
 		required: true
+	},
+	session: {
+		type: ObjectId,
+		ref: 'Session'
+	},
+	date: {
+		type: String
 	}
 });
 
