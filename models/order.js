@@ -30,6 +30,10 @@ var orderSchema = mongoose.Schema({
 	},
 	date: {
 		type: String
+	},
+	processing: {
+		type: Boolean,
+		default: false
 	}
 });
 

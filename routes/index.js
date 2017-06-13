@@ -19,6 +19,7 @@ var createSession = require('./session/create-session');
 // Orders
 var addOrder = require('./orders/add-order');
 var getOrders = require('./orders/get-orders');
+var deleteOrders = require('./orders/delete-orders');
 
 var routes = {
 	checkToken,
@@ -33,7 +34,8 @@ var routes = {
 	disableUser,
 	createSession,
 	addOrder,
-	getOrders
+	getOrders,
+	deleteOrders
 };
 
 module.exports = routes;

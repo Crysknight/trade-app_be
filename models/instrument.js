@@ -15,10 +15,12 @@ var instrumentSchema = mongoose.Schema({
 		required: true,
 		min: 0
 	},
-	interest: {
+	interested: {
+		type: Boolean,
+		default: false
+	},
+	dealt: {
 		type: Number,
-		min: 0,
-		max: 2,
 		default: 0
 	},
 	status: {

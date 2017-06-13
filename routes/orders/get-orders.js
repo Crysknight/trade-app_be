@@ -1,11 +1,12 @@
 var Order = require('../../models/order');
+var User = require('../../models/user');
 
 module.exports = function(req, res) {
-	Order.find()
-		.where('status', true)
-		.lean()
+	User.findOne({ token: req.body.token })
+		.then(user => {
+			return Order.find({ user: user._id }).where('quantity').ne(0).lean();
+		})
 		.then(orders => {
-			console.log(orders);
 			for (let i = 0; i < orders.length; i++) {
 				orders[i].id = orders[i]._id;
 				delete orders[i]._id;

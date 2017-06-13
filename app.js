@@ -41,6 +41,8 @@ app.post('/api/add-order', (req, res) => routes.addOrder(req, res));
 
 app.post('/api/get-orders', (req, res) => routes.getOrders(req, res));
 
+app.post('/api/delete-orders', (req, res) => routes.deleteOrders(req, res));
+
 
 /* =================================================================================================== */
 /* =================================================================================================== */

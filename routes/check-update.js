@@ -1,9 +1,16 @@
 var Session = require('../models/session');
+var Deal = require('../models/deal');
+var User = require('../models/user');
 
 module.exports = function(req, res) {
+	// console.log(req.body.token);
 	var resObject = {};
-	Session.findOne({ status: 1 })
-		.populate('instruments')
+	var reqUser;
+	User.findOne({ token: req.body.token })
+		.then(user => {
+			reqUser = user;
+			return Session.findOne({ status: 1 }).populate('instruments');
+		})
 		.then(session => {
 			if (session === null) {
 				res.json({
@@ -25,7 +32,17 @@ module.exports = function(req, res) {
 				var currentDate = new Date();
 				if (currentDate > startDate) {
 					resObject.session = session;
-					res.json(resObject);
+					Deal.find({ session: session.id, $or: [ { 'buyer.user': reqUser._id }, { 'seller.user': reqUser._id } ] })
+						.lean()
+						.then(deals => {
+							for (let i = 0; i < deals.length; i++) {
+								deals[i].id = deals[i]._id;
+								delete deals[i]._id;	
+							}
+							resObject.deals = deals;
+							res.json(resObject);
+						})
+						.catch(err => res.status(500).send('Unidentified error in finding deals'));
 				} else {
 					res.json({
 						session: {
