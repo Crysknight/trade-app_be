@@ -22,14 +22,7 @@ var sessionSchema = mongoose.Schema({
 		type: ObjectId,
 		ref: 'Instrument'
 	}],
-	interestedInstruments: [{
-		type: ObjectId,
-		ref: 'Instrument'
-	}],
-	dealedInstruments: [{
-		type: ObjectId,
-		ref: 'Instrument'
-	}]
+	instrumentsSnapshot: []
 });
 
 var Session = module.exports = connection.model('Session', sessionSchema);

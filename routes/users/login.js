@@ -22,10 +22,14 @@ module.exports = function(req, res) {
 			}
 		})
 		.then(user => {
-			user = user.toObject();
-			user.id = user._id;
-			delete user._id;
-			res.json(user);
+			if (!user) {
+				return;
+			} else {
+				user = user.toObject();
+				user.id = user._id;
+				delete user._id;
+				res.json(user);				
+			}
 		})
 		.catch(err => res.status(500).send('Unidentified error'));
 };

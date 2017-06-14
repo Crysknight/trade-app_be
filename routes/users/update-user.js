@@ -4,7 +4,7 @@ var passwordHash = require('password-hash');
 module.exports = function(req, res) {
 	let user = req.body;
 	delete user.token;
-	let { login, role, name, organization, phone, comment, status } = user; 
+	let { login, role, name, organization, phone, comment, status, id } = user; 
 	if (user.pass) {
 		update = user;
 		delete update.id;
@@ -24,18 +24,24 @@ module.exports = function(req, res) {
 	}
 	User.findOneAndUpdate(
 		{
-			_id: user.id
+			_id: id
 		},
 		update,
 		{
 			new: true
 		}
 	)
-		.lean()
-		.then(instrument => {
+		.then(user => {
+			user = user.toObject();
 			user.id = user._id;
 			delete user._id;
 			res.json(user);
 		})
-		.catch(err => res.status(500).send('Unidentified error'));
+		.catch(err => {
+			if (err.code === 11000) {
+				res.status(400).send('Duplicate user login');
+			} else {
+				res.status(500).send('Unidentified error');
+			}
+		});
 };

@@ -8,6 +8,7 @@ module.exports = function(req, res) {
 			for (let i = 0; i < users.length; i++) {
 				users[i].id = users[i]._id;
 				delete users[i]._id;
+				delete users[i].pass;
 			}
 			res.json(users);
 		})
