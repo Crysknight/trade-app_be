@@ -1,5 +1,20 @@
 var checkToken = require('./check-token');
-var checkUpdate = require('./check-update');
+
+// Instruments
+var addInstrument = require('./instruments/add-instrument');
+var getInstruments = require('./instruments/get-instruments');
+var disableInstrument = require('./instruments/disable-instrument');
+var updateInstrument = require('./instruments/update-instrument');
+
+// Orders
+var addOrder = require('./orders/add-order');
+var getOrders = require('./orders/get-orders');
+var deleteOrders = require('./orders/delete-orders');
+
+// Session
+var checkUpdate = require('./session/check-update');
+var createSession = require('./session/create-session');
+var updateSession = require('./session/update-session');
 
 // Users
 var login = require('./users/login');
@@ -7,19 +22,6 @@ var register = require('./users/register');
 var getUsers = require('./users/get-users');
 var updateUser = require('./users/update-user');
 var disableUser = require('./users/disable-user');
-
-// Instruments
-var addInstrument = require('./instruments/add-instrument');
-var getInstruments = require('./instruments/get-instruments');
-var disableInstrument = require('./instruments/disable-instrument');
-
-// Session
-var createSession = require('./session/create-session');
-
-// Orders
-var addOrder = require('./orders/add-order');
-var getOrders = require('./orders/get-orders');
-var deleteOrders = require('./orders/delete-orders');
 
 var routes = {
 	checkToken,
@@ -29,10 +31,12 @@ var routes = {
 	addInstrument,
 	getInstruments,
 	disableInstrument,
+	updateInstrument,
 	getUsers,
 	updateUser,
 	disableUser,
 	createSession,
+	updateSession,
 	addOrder,
 	getOrders,
 	deleteOrders

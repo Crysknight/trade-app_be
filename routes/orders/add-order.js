@@ -33,6 +33,9 @@ module.exports = function(req, res) {
 	// Save instrument.dealt here to update instrument in one request
 	var dealt;
 
+	// Store found instrument here to set the instrumentSnapshot field
+	var orderInstrument;
+
 	// Lock down the processed orders by updating their 'processing' property
 	Order.updateMany(
 		processingQuery, 
@@ -45,7 +48,18 @@ module.exports = function(req, res) {
 			if (result.n !== result.nModified) {
 				res.status(509).send('Route occupied');
 			} else {
-			// If no conflicts with concurrent requests - find all orders of different type and from different user
+			// If no conflicts with concurrent requests - find an instrument to save it for the instrumentSnapshot field
+				return Instrument.findById(reqOrder.instrument);
+			}
+		})
+		.then(result => {
+			if (!result) {
+				return;
+			} else if (result._id) {
+				orderInstrument = result.toObject();
+				orderInstrument.id = orderInstrument._id.toString();
+				delete orderInstrument._id;
+				//find all orders of different type and from different user
 				return Order.find(searchingQuery);
 			}
 		})
@@ -91,7 +105,7 @@ module.exports = function(req, res) {
 					var deal = {
 						seller,
 						buyer,
-						instrument: reqOrder.instrument,
+						instrument: orderInstrument,
 						session: reqOrder.session,
 						date: reqOrder.date
 					};
@@ -217,4 +231,4 @@ module.exports = function(req, res) {
 			res.status(500).send('Unidentified error');
 		});
 
-}
+};

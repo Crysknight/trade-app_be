@@ -28,10 +28,7 @@ var dealSchema = mongoose.Schema({
 			ref: 'Order'
 		}
 	},
-	instrument: {
-		type: ObjectId,
-		ref: 'Instrument'
-	},
+	instrument: {},
 	session: {
 		type: ObjectId,
 		ref: 'Session'

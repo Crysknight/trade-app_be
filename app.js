@@ -7,9 +7,6 @@ var mongoose = require('mongoose');
 
 var routes = require('./routes');
 
-// We need User model here just to check the token. Other models are used in routes folder
-var User = require('./models/user');
-
 // Serving build folder with React in it
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -18,12 +15,19 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
-// User login. Gets a token on login for further uses
+// User login. User gets a token on login for further uses
 app.post('/api/login', (req, res) => routes.login(req, res));
 
 
+
+/* =================================================================================================== */
+/* < TOKEN VALIDATION > */
+/* =================================================================================================== */
+
 // All routes after this will need a token to work. Thus, they're all POST
 app.use('/api/*', (req, res, next) => routes.checkToken(req, res, next));
+
+/* =================================================================================================== */
 
 
 
@@ -31,6 +35,7 @@ app.use('/api/*', (req, res, next) => routes.checkToken(req, res, next));
 /* < USER BLOCK > */
 /* =================================================================================================== */
 
+// Session
 
 app.post('/api/check-update', (req, res) => routes.checkUpdate(req, res));
 
@@ -43,8 +48,6 @@ app.post('/api/get-orders', (req, res) => routes.getOrders(req, res));
 
 app.post('/api/delete-orders', (req, res) => routes.deleteOrders(req, res));
 
-
-/* =================================================================================================== */
 /* =================================================================================================== */
 
 
@@ -53,7 +56,6 @@ app.post('/api/delete-orders', (req, res) => routes.deleteOrders(req, res));
 /* < ADMIN BLOCK > */
 /* =================================================================================================== */
 
-
 // Instruments
 
 app.post('/api/add-instrument', (req, res) => routes.addInstrument(req, res));
@@ -61,6 +63,8 @@ app.post('/api/add-instrument', (req, res) => routes.addInstrument(req, res));
 app.post('/api/get-instruments', (req, res) => routes.getInstruments(req, res));
 
 app.post('/api/disable-instrument', (req, res) => routes.disableInstrument(req, res));
+
+app.post('/api/update-instrument', (req, res) => routes.updateInstrument(req, res));
 
 
 // Users
@@ -78,8 +82,8 @@ app.post('/api/disable-user', (req, res) => routes.disableUser(req, res));
 
 app.post('/api/create-session', (req, res) => routes.createSession(req, res));
 
+app.post('/api/update-session', (req, res) => routes.updateSession(req, res));
 
-/* =================================================================================================== */
 /* =================================================================================================== */
 
 

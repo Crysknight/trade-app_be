@@ -2,12 +2,15 @@ var User = require('../models/user');
 
 var adminPaths = [
 	'add-instrument',
-	'get-admin-instruments',
 	'disable-instrument',
-	'register',
+	'get-instruments',
+	'update-instrument',
+	'create-session',
+	'update-session',
+	'disable-user',
 	'get-users',
-	'update-user',
-	'disable-user'
+	'register',
+	'update-user'
 ];
 
 module.exports = function(req, res, next) {
