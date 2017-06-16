@@ -7,6 +7,7 @@ var adminPaths = [
 	'update-instrument',
 	'create-session',
 	'update-session',
+	'get-sessions',
 	'disable-user',
 	'get-users',
 	'register',

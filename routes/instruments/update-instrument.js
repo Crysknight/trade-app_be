@@ -15,7 +15,7 @@ module.exports = function(req, res) {
 			break;
 		}
 		case 'updating price': {
-			update = { $set: { price: req.body.updateValue } };
+			update = { $set: { price: req.body.updateValue, interested: false } };
 			break;
 		}
 		default: {
@@ -29,10 +29,9 @@ module.exports = function(req, res) {
 			}
 		})
 		.then(result => {
-			console.log(result);
 			if (!result) {
 				return;
-			} else {
+			} else if (result.ok) {
 				res.send('ok');
 			}
 		})

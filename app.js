@@ -84,8 +84,11 @@ app.post('/api/create-session', (req, res) => routes.createSession(req, res));
 
 app.post('/api/update-session', (req, res) => routes.updateSession(req, res));
 
-/* =================================================================================================== */
+app.post('/api/get-sessions-count', (req, res) => routes.getSessionsCount(req, res));
 
+app.post('/api/get-sessions', (req, res) => routes.getSessions(req, res));
+
+/* =================================================================================================== */
 
 
 // If the path didn't match to any of API ones, try to delegate the request to React app. 404 page is in React's competence

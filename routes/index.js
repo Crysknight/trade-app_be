@@ -15,6 +15,8 @@ var deleteOrders = require('./orders/delete-orders');
 var checkUpdate = require('./session/check-update');
 var createSession = require('./session/create-session');
 var updateSession = require('./session/update-session');
+var getSessionsCount = require('./session/get-sessions-count');
+var getSessions = require('./session/get-sessions');
 
 // Users
 var login = require('./users/login');
@@ -37,6 +39,8 @@ var routes = {
 	disableUser,
 	createSession,
 	updateSession,
+	getSessionsCount,
+	getSessions,
 	addOrder,
 	getOrders,
 	deleteOrders
