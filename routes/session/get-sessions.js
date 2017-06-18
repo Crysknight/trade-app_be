@@ -1,8 +1,6 @@
 var Session = require('../../models/session');
 
 module.exports = function(req, res) {
-	// console.log(req.body);
-	// res.send('ok');
 	var body = req.body,
 			skip,
 			limit;
@@ -10,11 +8,16 @@ module.exports = function(req, res) {
 	console.log(skip);
 	limit = body.sessionsPerPage;
 	Session.find()
+		.where('status', 0)
 		.sort('_id')
 		.skip(skip)
 		.limit(limit)
 		.lean()
 		.then(result => {
+			for (let i = 0; i < result.length; i++) {
+				result[i].id = result[i]._id;
+				delete result[i]._id;
+			}
 			res.json(result);
 		})
 		.catch(err => {

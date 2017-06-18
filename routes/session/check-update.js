@@ -43,6 +43,14 @@ module.exports = function(req, res) {
 				var id = session._id;
 				if (currentDate > endDate) {
 					session = session.toObject();
+					session.instruments = session.instruments.sort((a, b) => {
+						if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+						if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+						if (a.name.toLowerCase() === b.name.toLowerCase()) {
+							if (a.name > b.name) return 1;
+							if (a.name < b.name) return -1;
+						}
+					});
 					for (let i = 0; i < session.instruments.length; i++) {
 						session.instruments[i].id = session.instruments[i]._id.toString();
 						delete session.instruments[i]._id;
@@ -56,6 +64,14 @@ module.exports = function(req, res) {
 					resObject.session = session.toObject();
 					resObject.session.id = resObject.session._id;
 					delete resObject.session._id;
+					resObject.session.instruments = resObject.session.instruments.sort((a, b) => {
+						if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+						if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+						if (a.name.toLowerCase() === b.name.toLowerCase()) {
+							if (a.name > b.name) return 1;
+							if (a.name < b.name) return -1;
+						}
+					});
 					for (let i = 0; i < resObject.session.instruments.length; i++) {
 						resObject.session.instruments[i].id = resObject.session.instruments[i]._id;
 						delete resObject.session.instruments[i]._id;
@@ -79,6 +95,14 @@ module.exports = function(req, res) {
 					session = result.toObject();
 					session.id = session._id;
 					delete session._id;
+					session.instruments = session.instruments.sort((a, b) => {
+						if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+						if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+						if (a.name.toLowerCase() === b.name.toLowerCase()) {
+							if (a.name > b.name) return 1;
+							if (a.name < b.name) return -1;
+						}
+					});
 					for (let i = 0; i < session.instruments.length; i++) {
 						session.instruments[i].id = session.instruments[i]._id;
 						delete session.instruments[i]._id;

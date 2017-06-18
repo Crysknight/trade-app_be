@@ -1,5 +1,8 @@
 var checkToken = require('./check-token');
 
+// Deals
+var getDeals = require('./deals/get-deals');
+
 // Instruments
 var addInstrument = require('./instruments/add-instrument');
 var getInstruments = require('./instruments/get-instruments');
@@ -17,6 +20,9 @@ var createSession = require('./session/create-session');
 var updateSession = require('./session/update-session');
 var getSessionsCount = require('./session/get-sessions-count');
 var getSessions = require('./session/get-sessions');
+var getSession = require('./session/get-session');
+var getLastSession = require('./session/get-last-session');
+
 
 // Users
 var login = require('./users/login');
@@ -30,6 +36,7 @@ var routes = {
 	checkUpdate,
 	login,
 	register,
+	getDeals,
 	addInstrument,
 	getInstruments,
 	disableInstrument,
@@ -41,6 +48,8 @@ var routes = {
 	updateSession,
 	getSessionsCount,
 	getSessions,
+	getSession,
+	getLastSession,
 	addOrder,
 	getOrders,
 	deleteOrders

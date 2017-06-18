@@ -39,6 +39,8 @@ app.use('/api/*', (req, res, next) => routes.checkToken(req, res, next));
 
 app.post('/api/check-update', (req, res) => routes.checkUpdate(req, res));
 
+app.post('/api/get-last-session', (req, res) => routes.getLastSession(req, res));
+
 
 // Orders
 
@@ -47,6 +49,11 @@ app.post('/api/add-order', (req, res) => routes.addOrder(req, res));
 app.post('/api/get-orders', (req, res) => routes.getOrders(req, res));
 
 app.post('/api/delete-orders', (req, res) => routes.deleteOrders(req, res));
+
+
+// Deals
+
+app.post('/api/get-deals', (req, res) => routes.getDeals(req, res));
 
 /* =================================================================================================== */
 
@@ -87,6 +94,8 @@ app.post('/api/update-session', (req, res) => routes.updateSession(req, res));
 app.post('/api/get-sessions-count', (req, res) => routes.getSessionsCount(req, res));
 
 app.post('/api/get-sessions', (req, res) => routes.getSessions(req, res));
+
+app.post('/api/get-session', (req, res) => routes.getSession(req, res));
 
 /* =================================================================================================== */
 

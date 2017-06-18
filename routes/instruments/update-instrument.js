@@ -7,7 +7,7 @@ module.exports = function(req, res) {
 	var update;
 	switch (req.body.updateType) {
 		case 'updating interest': {
-			update = { $set: { interested: true } };
+			update = { $set: { interested: req.body.updateValue } };
 			break;
 		}
 		case 'updating volatility': {
@@ -26,6 +26,8 @@ module.exports = function(req, res) {
 		.then(instrument => {
 			if (req.body.updateType === 'updating price') {
 				return Order.updateMany({ instrument: instrument._id }, { $set: { quantity: 0 } });
+			} else {
+				res.send('ok');
 			}
 		})
 		.then(result => {
