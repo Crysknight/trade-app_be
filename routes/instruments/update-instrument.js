@@ -2,8 +2,6 @@ var Instrument = require('../../models/instrument');
 var Order = require('../../models/order');
 
 module.exports = function(req, res) {
-	// console.log(req.body);
-	// res.send('ok');
 	var update;
 	switch (req.body.updateType) {
 		case 'updating interest': {

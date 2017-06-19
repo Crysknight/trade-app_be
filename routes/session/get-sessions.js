@@ -5,7 +5,6 @@ module.exports = function(req, res) {
 			skip,
 			limit;
 	skip = (body.page - 1) * body.sessionsPerPage;
-	console.log(skip);
 	limit = body.sessionsPerPage;
 	Session.find()
 		.where('status', 0)

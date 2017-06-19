@@ -15,7 +15,6 @@ module.exports = function(req, res) {
 			}
 		})
 		.then(deals => {
-			console.log(deals);
 			res.json(deals);
 		})
 		.catch(err => {
