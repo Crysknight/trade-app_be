@@ -100,14 +100,14 @@ app.post('/api/get-session', (req, res) => routes.getSession(req, res));
 /* =================================================================================================== */
 
 
-// If the path didn't match to any of API ones, try to delegate the request to React app. 404 page is in React's competence
-app.get('/*', function(req, res) {
-	res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
 // Redirect from the old path '/trade-app/'
 app.get('/trade-app/*', function(req, res) {
 	res.redirect(301, '/');
+});
+
+// If the path didn't match to any of API ones, try to delegate the request to React app. 404 page is in React's competence
+app.get('/*', function(req, res) {
+	res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 
