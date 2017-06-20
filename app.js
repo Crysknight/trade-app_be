@@ -105,6 +105,11 @@ app.get('/*', function(req, res) {
 	res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
+// Redirect from the old path '/trade-app/'
+app.get('/trade-app/*', function(req, res) {
+	res.redirect(301, '/');
+});
+
 
 app.listen(80);
 console.log('Running on port 80...');
