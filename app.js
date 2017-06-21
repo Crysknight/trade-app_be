@@ -18,7 +18,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 // User login. User gets a token on login for further uses
 app.post('/api/login', (req, res) => routes.login(req, res));
 
-
+app.post('/api/insert', (req, res) => routes.insert(req, res));
 
 /* =================================================================================================== */
 /* < TOKEN VALIDATION > */
@@ -99,17 +99,15 @@ app.post('/api/get-session', (req, res) => routes.getSession(req, res));
 
 /* =================================================================================================== */
 
+// Redirect from the old path '/trade-app/'
+app.get('/trade-app/*', function(req, res) {
+        res.redirect(301, '/');
+});
 
 // If the path didn't match to any of API ones, try to delegate the request to React app. 404 page is in React's competence
 app.get('/*', function(req, res) {
 	res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
-
-// Redirect from the old path '/trade-app/'
-app.get('/trade-app/*', function(req, res) {
-	res.redirect(301, '/');
-});
-
 
 app.listen(80);
 console.log('Running on port 80...');

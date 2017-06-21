@@ -1,3 +1,5 @@
+var insert = require('./insert');
+
 var checkToken = require('./check-token');
 
 // Deals
@@ -32,6 +34,7 @@ var updateUser = require('./users/update-user');
 var disableUser = require('./users/disable-user');
 
 var routes = {
+	insert,
 	checkToken,
 	checkUpdate,
 	login,
